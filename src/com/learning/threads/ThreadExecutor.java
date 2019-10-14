@@ -11,8 +11,9 @@ public class ThreadExecutor {
 
 	/**
 	 * @param args
+	 * @throws InterruptedException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		
 		/*Task 1 Started
 		 1 2 3 4 5 6 7 8 9 10
@@ -25,13 +26,20 @@ public class ThreadExecutor {
 		Task 2 Ended*/
 		
 		Task1 task1 = new Task1();// new state
+		//task1.setName("Task1");
+		//task1.setName("Task1");
+		
 		task1.start();// runnable state
 		
-		
+		task1.join();
 		Task2 task2 = new Task2();
 		Thread task2Thread = new Thread(task2);// new state
+		task2Thread.setName("Task2");
+		task2Thread.setPriority(10);
 		task2Thread.start();// runnable state
 		
+		
+		task2Thread.join();		
 		
 		System.out.println("Task 3 Started");
 		for(int i =21 ; i<=30; i++) {
@@ -44,20 +52,29 @@ public class ThreadExecutor {
 
 }
 
-class Task0{
-	
-}
+
 
 class Task1 extends Thread{
 	
-	@Override
-	public void run() {
+	
+	public void run()  {
 		
 		System.out.println("Task 1 Started");
 		for(int i =1 ; i<=10; i++) {
+			try {
 			System.out.print(" "+i);
+			/*for(int j =1 ; j<=5; j++) {
+				System.out.print(" "+i);
+			}*/
+	
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		System.out.println();
+		
 		System.out.println("Task 1 Ended");
 		
 		
@@ -79,8 +96,10 @@ class Task2 implements Runnable {
 			System.out.print(" "+i);
 		}
 		System.out.println();
+		
 		System.out.println("Task 2 Ended");
 		
 	}
 	
 }
+

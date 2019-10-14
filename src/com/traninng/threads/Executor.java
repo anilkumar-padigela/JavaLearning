@@ -11,8 +11,9 @@ public class Executor {
 
 	/**
 	 * @param args
+	 * @throws InterruptedException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 			
 		Task1 task1 = new Task1();
@@ -23,6 +24,8 @@ public class Executor {
 		Thread task2Thread = new Thread(task2);
 		task2Thread.start();
 		
+		task1.join();
+		task2Thread.join();
 		System.out.println("Task 3 Started");
 		for(int i =21 ; i<=30; i++) {
 			System.out.print(" "+i);
@@ -38,6 +41,13 @@ class Task1 extends Thread{
 		System.out.println("Task 1 Started");
 		for(int i =1 ; i<=10; i++) {
 			System.out.print(" "+i);
+		/*	try {
+				Thread.sleep(100);
+				Thread.yield();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
 		}
 		System.out.println("Task 1 Ended");
 	}
