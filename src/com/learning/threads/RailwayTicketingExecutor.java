@@ -36,7 +36,7 @@ class BookTicketsThread extends Thread{
 	
 	public void run() {
 		
-		rtl.bookTicket(3);
+		rtl.bookTicket();
 	}
 }
 
@@ -48,19 +48,24 @@ class RailwayTicketing {
 	int incrementor = 1;
 	int numOfTickets = 75;
 	boolean seatAlloated;
-	public  void bookTicket(int num)  {
+	public  void bookTicket()  {
 		
 		try {
+			synchronized(this) {
 			System.out.println("Ticket alloted to thread"+Thread.currentThread().getName() + " is "+ incrementor);
+			
 			System.out.println("Start:Performing transactions ");
 			Thread.sleep(2000);
 			System.out.println("End : Performing transactions ");
 			incrementor++;
+			}
+			
 		} catch (Exception  e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		}
+		
+	}
 		
 		
 	
