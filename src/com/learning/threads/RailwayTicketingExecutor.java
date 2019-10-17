@@ -2,12 +2,12 @@
  * 
  */
 package com.learning.threads;
-
+//import static  com.learning.list.collection.ArrayListExecutor;
 /**
  * @author Padigela Anil kumar
  *
  */
-public class RailwayTicketingExecutor {
+public  class RailwayTicketingExecutor {
 
 	/**
 	 * @param args

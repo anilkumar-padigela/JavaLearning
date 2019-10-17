@@ -10,5 +10,7 @@ package com.learning.abstraction;
 public interface ISauce {
 	
 	public void addSauce();
+	
+	
 
 }
